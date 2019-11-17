@@ -6,6 +6,7 @@ import MusicPlayer
 import time
 import threading
 
+#Func to run commands and update textbox column
 def runcmd(cmd, ipreq):
     if ipreq == 1:
         temp = cmd + " " + values["_IP_"]
@@ -41,10 +42,12 @@ def pingFunc():
 def traceFunc():
     if values["_WINDOWS_"]:
         threading.Thread(target=runcmd, args=("tracert", 1), daemon=True).start()
+        window["_INFOM_"].update("Running Tracert..")
         
 
     elif values["_LINUX_"]:
         threading.Thread(target=runcmd, args=("traceroute", 1), daemon=True).start()
+        window["_INFOM_"].update("Running Traceroute..")
 
 #Doesn't work as intended yet... Not all commands work
 def customcmd():
@@ -54,6 +57,7 @@ def customcmd():
     else:
         window["_INFOM_"].update("Please enter a command first..")
 
+#Function to flush DNS
 def flushDNS():
     if values["_WINDOWS_"]:
         threading.Thread(target=runcmd, args=("ipconfig /flushdns", 0), daemon=True).start()
@@ -61,6 +65,7 @@ def flushDNS():
         threading.Thread(target=runcmd, args=("service nscd restart", 0), daemon=True).start()
         runcmd("service nscd restart", 0)
 
+#Function to shut down PC
 def shutFun():
     if values["_WINDOWS_"]:
         subprocess.Popen('shutdown -p -f')
@@ -104,7 +109,7 @@ layout = [
             title='Music Player',
             title_color='black',
             relief=sg.RELIEF_SUNKEN)],
-    [sg.Button(button_text="Delete System32")]]
+    [sg.Button(button_text="Delete System32"), sg.Text("Seriously.. Don't press this button..!")]]
 
 #"Fun" layout
 layoutFun = [[sg.Text('Error: System32 not found', size=(
