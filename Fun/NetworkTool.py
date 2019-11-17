@@ -1,10 +1,15 @@
 #GUI Software for Network Helping-Tool
 #Threading help: https://realpython.com/intro-to-python-threading/#what-is-a-thread
+#Threading makes it possible to do multiple tasks at once. For example run a ping command, and still be able to do other stuff in the program at the same.
+
 import PySimpleGUI as sg
 import subprocess
 import MusicPlayer
-import time
 import threading
+
+#################################################################################################
+#Below is all functions for the program
+#################################################################################################
 
 #Func to run commands and update textbox column
 def runcmd(cmd, ipreq):
@@ -22,7 +27,7 @@ def runcmd(cmd, ipreq):
         except subprocess.CalledProcessError:
             window["_INFOM_"].update("Not valid")
         except FileNotFoundError:
-            window["_INFOM_"].update("Not valid")
+            window["_INFOM_"].update("Command Not Found")
 
 #Function to show ipconfig for Windows and Linux
 def ipconfigFunc():
@@ -74,9 +79,14 @@ def shutFun():
 
 #Help with a timer that doesn't freeze the program
 #https://stackoverflow.com/a/44666336
+#This will create a new thread that runs a timer, and then runs the function, without freezing the program
 def fun():
     MusicPlayer.setSong3()
     threading.Timer(16, shutFun, args=None, kwargs=None).start()
+
+#################################################################################################
+#Below is PySimpleGUI code
+#################################################################################################
 
 #Changes the theme
 sg.change_look_and_feel('Reddit')
@@ -111,17 +121,9 @@ layout = [
             relief=sg.RELIEF_SUNKEN)],
     [sg.Button(button_text="Delete System32"), sg.Text("Seriously.. Don't press this button..!")]]
 
-#"Fun" layout
-layoutFun = [[sg.Text('Error: System32 not found', size=(
-        20, 1), justification='center', font=("Helvetica", 25), relief=sg.RELIEF_RIDGE)],
-    [sg.Text('You really fucked it up..')]]
-
-#"Fun" window
-windowFun = sg.Window("System32 Not found", layoutFun, default_element_size=(40,1), grab_anywhere=False)
-
 #This creates the window
 window = sg.Window('Network Helping-Tool', layout,
-    default_element_size=(40, 1), grab_anywhere=False)
+    default_element_size=(40, 1), grab_anywhere=False, auto_size_text=True)
 
 
 #This will run the window in a loop
@@ -143,4 +145,3 @@ while True:
         MusicPlayer.stopMusic()
     elif event == "Delete System32":
         fun()
-        windowFun.read()
