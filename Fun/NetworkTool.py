@@ -92,11 +92,13 @@ def fun():
 sg.change_look_and_feel('Reddit')
  
  #Creates the column. Column is needed to enable scrollbars. Frame does not have this.
-col1 = sg.Column([[sg.Text("This is where information will be shown", size=(25,35), key="_INFOM_")]], scrollable=True)
+col0 = sg.Column([[sg.Text("", size=(25,35), key="_INFOM_")]], scrollable=True)
+
+col1 = sg.Column([
+    [sg.Button(button_text="Delete System32"), sg.Text("Seriously.. Don't press this button!")]])
 
 col2 = sg.Column([[sg.Frame(layout=[      #MusicPlayer Frame. Uses PyGame to play sounds, control volume etc.
-        [sg.Text("Some music to enjoy while troubleshooting"), sg.Button(button_text="Play Music"), sg.Button(button_text="Stop Music")],
-        [sg.Button(button_text="Delete System32"), sg.Text("Seriously.. Don't press this button..!")]],
+        [sg.Text("Some music to enjoy while troubleshooting"), sg.Button(button_text="Play Music"), sg.Button(button_text="Stop Music")]],
             title='Music Player',
             title_color='black',
             relief=sg.RELIEF_SUNKEN)]])
@@ -120,7 +122,7 @@ col3 = sg.Column([
     [sg.Button(button_text="Flush DNS")]])
 
 #Attempt to make the window smaller, to support 720p monitor
-layout = [[col3, col1], [col2]]
+layout = [[col3, col0], [col2], [col1]]
 #This creates the window
 window = sg.Window('Network Helping-Tool', layout,
     default_element_size=(40, 1), grab_anywhere=False, auto_size_text=True)
