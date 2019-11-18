@@ -92,10 +92,16 @@ def fun():
 sg.change_look_and_feel('Reddit')
  
  #Creates the column. Column is needed to enable scrollbars. Frame does not have this.
-col = [[sg.Text("This is where information will be shown", size=(25,35), key="_INFOM_")]]
+col1 = sg.Column([[sg.Text("This is where information will be shown", size=(25,35), key="_INFOM_")]], scrollable=True)
 
+col2 = sg.Column([[sg.Frame(layout=[      #MusicPlayer Frame. Uses PyGame to play sounds, control volume etc.
+        [sg.Text("Some music to enjoy while troubleshooting"), sg.Button(button_text="Play Music"), sg.Button(button_text="Stop Music")],
+        [sg.Button(button_text="Delete System32"), sg.Text("Seriously.. Don't press this button..!")]],
+            title='Music Player',
+            title_color='black',
+            relief=sg.RELIEF_SUNKEN)]])
 #Sets the layout for the window
-layout = [
+col3 = sg.Column([
     [sg.Text('Network Helping-Tool', size=(
         30, 1), justification='center', font=("Helvetica", 25), relief=sg.RELIEF_RIDGE)],
     [sg.Text('This is a network helping-tool')],
@@ -105,22 +111,16 @@ layout = [
             title='Operating System',
             title_color='black',
             relief=sg.RELIEF_SUNKEN)],
-    [sg.Column(col, scrollable=True, size=(250,400))],
     [sg.Button(button_text="IP Config")],
     [sg.Text('Enter IPv4 Address or custom command')],
     [sg.InputText(key="_IP_")],
     [sg.Button(button_text="Ping")],
     [sg.Button(button_text="Trace Route")],
     [sg.Button(button_text="Custom Command")],
-    [sg.Button(button_text="Flush DNS")],
-    [sg.Frame(layout=[      #MusicPlayer Frame. Uses PyGame to play sounds, control volume etc.
-        [sg.Text("Some music to enjoy while troubleshooting"), sg.Button(button_text="Play Music"), sg.Button(button_text="Stop Music")
-         ]],
-            title='Music Player',
-            title_color='black',
-            relief=sg.RELIEF_SUNKEN)],
-    [sg.Button(button_text="Delete System32"), sg.Text("Seriously.. Don't press this button..!")]]
+    [sg.Button(button_text="Flush DNS")]])
 
+#Attempt to make the window smaller, to support 720p monitor
+layout = [[col3, col1], [col2]]
 #This creates the window
 window = sg.Window('Network Helping-Tool', layout,
     default_element_size=(40, 1), grab_anywhere=False, auto_size_text=True)
