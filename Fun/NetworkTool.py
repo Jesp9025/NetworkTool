@@ -11,29 +11,35 @@ import threading
 #Below is all functions for the program
 #################################################################################################
 
-#Func to run commands and update textbox column
+
+def clearWindow():
+    window["_INFO_"].update("")
+#Func to run commands and update text
 def runcmd(cmd, ipreq):
+    clearWindow()
     if ipreq == 1:
         temp = cmd + " " + values["_IP_"]
     elif ipreq == 0:
         temp = cmd
     chars = "-"
     if any((c in chars) for c in temp):
-        window["_INFOM_"].update("Not gonna happen..")
+        print("Not gonna happen..")
     else:
-        try:
-            result = subprocess.check_output(temp)
-            window["_INFOM_"].update(result)
-        except subprocess.CalledProcessError:
-            window["_INFOM_"].update("Not valid")
-        except FileNotFoundError:
-            window["_INFOM_"].update("Command Not Found")
+            print("Hold on..")
+            result = subprocess.Popen(temp, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            out, err = result.communicate()
+            if out:
+                clearWindow()
+                print(out.decode("utf-8"))
+            if err:
+                clearWindow()
+                print("Unknown command")
+        
 
 #Function to show ipconfig for Windows and Linux
 def ipconfigFunc():
     if values["_WINDOWS_"]:
         threading.Thread(target=runcmd, args=("ipconfig", 0), daemon=True).start()
-
     elif values["_LINUX_"]:
         threading.Thread(target=runcmd, args=("ifconfig", 0), daemon=True).start()
 
@@ -41,26 +47,20 @@ def ipconfigFunc():
 #https://stackoverflow.com/questions/5188792/how-to-check-a-string-for-specific-characters
 def pingFunc():
     threading.Thread(target=runcmd, args=("ping", 1), daemon=True).start()
-    window["_INFOM_"].update("Pinging..")
 
 #Function to start a trace route
 def traceFunc():
     if values["_WINDOWS_"]:
         threading.Thread(target=runcmd, args=("tracert", 1), daemon=True).start()
-        window["_INFOM_"].update("Running Tracert..")
-        
-
     elif values["_LINUX_"]:
         threading.Thread(target=runcmd, args=("traceroute", 1), daemon=True).start()
-        window["_INFOM_"].update("Running Traceroute..")
 
-#Doesn't work as intended yet... Not all commands work
+#To run a custom command
 def customcmd():
     if values["_IP_"] != "":
-        threading.Thread(target=runcmd, args=(values["_IP_"], 0), daemon=True).start()
-        window["_INFOM_"].update("Running your command. Sit tight..")
+        runcmd(values["_IP_"], 0)
     else:
-        window["_INFOM_"].update("Please enter a command first..")
+        print("")
 
 #Function to flush DNS
 def flushDNS():
@@ -68,7 +68,6 @@ def flushDNS():
         threading.Thread(target=runcmd, args=("ipconfig /flushdns", 0), daemon=True).start()
     elif values["_LINUX_"]:
         threading.Thread(target=runcmd, args=("service nscd restart", 0), daemon=True).start()
-        runcmd("service nscd restart", 0)
 
 #Function to shut down PC
 def shutFun():
@@ -90,18 +89,18 @@ def fun():
 
 #Changes the theme
 sg.change_look_and_feel('Reddit')
- 
- #Creates the column. Column is needed to enable scrollbars. Frame does not have this.
-col0 = sg.Column([[sg.Text("", size=(25,35), key="_INFOM_")]], scrollable=True)
+
+#sg.Output takes all text that is printed to console, and puts it in a textbox
+col0 = sg.Output(size=(50, 1), key="_INFO_")
 
 col1 = sg.Column([
     [sg.Button(button_text="Delete System32"), sg.Text("Seriously.. Don't press this button!")]])
 
-col2 = sg.Column([[sg.Frame(layout=[      #MusicPlayer Frame. Uses PyGame to play sounds, control volume etc.
+col2 = sg.Frame(layout=[      #MusicPlayer Frame. Uses PyGame to play sounds, control volume etc.
         [sg.Text("Some music to enjoy while troubleshooting"), sg.Button(button_text="Play Music"), sg.Button(button_text="Stop Music")]],
             title='Music Player',
             title_color='black',
-            relief=sg.RELIEF_SUNKEN)]])
+            relief=sg.RELIEF_SUNKEN)
 #Sets the layout for the window
 col3 = sg.Column([
     [sg.Text('Network Helping-Tool', size=(
@@ -130,7 +129,10 @@ window = sg.Window('Network Helping-Tool', layout,
 
 #This will run the window in a loop
 while True:
-    event, values = window.read() #event, values is needed in order for buttons etc to do stuff.
+    event, values = window.read()
+     #event, values is needed in order for buttons etc to do stuff.
+    if event == 'EXIT'  or event is None: #Shuts down the program when "exit-cross" is clicked on  
+        break
     if event == "IP Config": #This will do stuff if button named "IP Config" button is pressed
         ipconfigFunc()
     elif event == "Ping":
