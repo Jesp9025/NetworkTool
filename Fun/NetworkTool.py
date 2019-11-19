@@ -60,7 +60,8 @@ def customcmd():
     if values["_IP_"] != "":
         runcmd(values["_IP_"], 0)
     else:
-        print("")
+        clearWindow()
+        print("Please enter a command first")
 
 #Function to flush DNS
 def flushDNS():
@@ -90,7 +91,7 @@ def fun():
 #Changes the theme
 sg.change_look_and_feel('Reddit')
 
-#sg.Output takes all text that is printed to console, and puts it in a textbox
+#sg.Output takes the output from stdout and stderr from subprocess, and puts it in a textbox
 col0 = sg.Output(size=(50, 1), key="_INFO_")
 
 col1 = sg.Column([
