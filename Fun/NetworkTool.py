@@ -106,6 +106,7 @@ col2 = sg.Frame(layout=[      #MusicPlayer Frame. Uses PyGame to play sounds, co
 col3 = sg.Column([
     [sg.Text('Network Helping-Tool', size=(
         30, 1), justification='center', font=("Helvetica", 25), relief=sg.RELIEF_RIDGE)],
+    [sg.Text('Made by Jesp9025', size=(15,1))],
     [sg.Text('This is a network helping-tool')],
     [sg.Frame(layout=[
         [sg.Radio('Windows', "RADIO1", default=True, key="_WINDOWS_"), #key will make it possible to do events and use value of the button, depending on if its pressed or not(True, False)
