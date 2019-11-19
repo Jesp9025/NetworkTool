@@ -11,7 +11,6 @@ import threading
 #Below is all functions for the program
 #################################################################################################
 
-
 def clearWindow():
     window["_INFO_"].update("")
 #Func to run commands and update text
@@ -127,7 +126,6 @@ layout = [[col3, col0], [col2], [col1]]
 #This creates the window
 window = sg.Window('Network Helping-Tool', layout,
     default_element_size=(40, 1), grab_anywhere=False, auto_size_text=True)
-
 
 #This will run the window in a loop
 while True:
