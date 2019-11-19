@@ -13,6 +13,7 @@ import threading
 
 def clearWindow():
     window["_INFO_"].update("")
+    
 #Func to run commands and update text
 def runcmd(cmd, ipreq):
     clearWindow()
@@ -24,9 +25,9 @@ def runcmd(cmd, ipreq):
     if any((c in chars) for c in temp):
         print("Not gonna happen..")
     else:
-            print("Hold on..")
             result = subprocess.Popen(temp, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             out, err = result.communicate()
+            print("Hold on..")
             if out:
                 clearWindow()
                 print(out.decode("utf-8"))
@@ -81,7 +82,7 @@ def shutFun():
 #This will create a new thread that runs a timer, and then runs the function, without freezing the program
 def fun():
     MusicPlayer.setSong3()
-    threading.Timer(16, shutFun, args=None, kwargs=None).start()
+    threading.Timer(17, shutFun, args=None, kwargs=None).start()
 
 #################################################################################################
 #Below is PySimpleGUI code
@@ -114,18 +115,20 @@ col3 = sg.Column([
             title_color='black',
             relief=sg.RELIEF_SUNKEN)],
     [sg.Button(button_text="IP Config")],
-    [sg.Text('Enter IPv4 Address or custom command')],
+    [sg.Text('Enter IP Address or custom command')],
     [sg.InputText(key="_IP_")],
     [sg.Button(button_text="Ping")],
     [sg.Button(button_text="Trace Route")],
-    [sg.Button(button_text="Custom Command")],
-    [sg.Button(button_text="Flush DNS")]])
+    [sg.Button(button_text="Flush DNS")],
+    [sg.Text("")],
+    [sg.Button(bind_return_key=True, button_text="Custom Command")]])
 
 #Attempt to make the window smaller, to support 720p monitor
 layout = [[col3, col0], [col2], [col1]]
 #This creates the window
 window = sg.Window('Network Helping-Tool', layout,
     default_element_size=(40, 1), grab_anywhere=False, auto_size_text=True)
+
 
 #This will run the window in a loop
 while True:
