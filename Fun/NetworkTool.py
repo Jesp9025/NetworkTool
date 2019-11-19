@@ -91,7 +91,7 @@ def fun():
 sg.change_look_and_feel('Reddit')
 
 #sg.Output takes the output from stdout and stderr from subprocess, and puts it in a textbox
-col0 = sg.Output(size=(50, 1), key="_INFO_")
+col0 = sg.Output(size=(52, 1), key="_INFO_")
 
 col1 = sg.Column([
     [sg.Button(button_text="Delete System32"), sg.Text("Seriously.. Don't press this button!")]])
