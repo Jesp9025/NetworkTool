@@ -15,6 +15,7 @@ def clearWindow():
     window["_INFO_"].update("")
     
 #Func to run commands and update text
+#Uses subprocess, which includes stdout, stderr. Assigning a variable to communicate() allows you to get output and error from the subprocess.Popen
 def runcmd(cmd, ipreq):
     clearWindow()
     if ipreq == 1:
@@ -22,18 +23,19 @@ def runcmd(cmd, ipreq):
     elif ipreq == 0:
         temp = cmd
     chars = "-"
+    
     if any((c in chars) for c in temp):
         print("Not gonna happen..")
     else:
-            result = subprocess.Popen(temp, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            out, err = result.communicate()
-            print("Hold on..")
-            if out:
-                clearWindow()
-                print(out.decode("utf-8"))
-            if err:
-                clearWindow()
-                print("Unknown command")
+        print("Hold on..")
+        result = subprocess.Popen(temp, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        out, err = result.communicate()
+        if out:
+            clearWindow()
+            print(out.decode("utf-8"))
+        if err:
+            clearWindow()
+            print("Unknown command")
         
 
 #Function to show ipconfig for Windows and Linux
@@ -91,14 +93,18 @@ def fun():
 #Changes the theme
 sg.change_look_and_feel('Reddit')
 
-#sg.Output takes the output from stdout and stderr from subprocess, and puts it in a textbox
+#sg.Output takes whatever is printed to the console, and puts it in a textbox
 col0 = sg.Output(size=(52, 1), key="_INFO_")
 
 col1 = sg.Column([
     [sg.Button(button_text="Delete System32"), sg.Text("Seriously.. Don't press this button!")]])
 
 col2 = sg.Frame(layout=[      #MusicPlayer Frame. Uses PyGame to play sounds, control volume etc.
-        [sg.Text("Some music to enjoy while troubleshooting"), sg.Button(button_text="Play Music"), sg.Button(button_text="Stop Music")]],
+        [sg.Text("Some music to enjoy while troubleshooting"), 
+        sg.Button(button_text="Play Music"),
+        sg.Button(button_text="Stop Music"),
+        sg.Button(button_text="+", size=(1,1)), 
+        sg.Button(button_text="-", size=(1,1))]],
             title='Music Player',
             title_color='black',
             relief=sg.RELIEF_SUNKEN)
@@ -127,7 +133,7 @@ col3 = sg.Column([
 layout = [[col3, col0], [col2], [col1]]
 #This creates the window
 window = sg.Window('Network Helping-Tool', layout,
-    default_element_size=(40, 1), grab_anywhere=False, auto_size_text=True)
+    default_element_size=(40, 1), grab_anywhere=False, auto_size_text=True, icon="icon.ico")
 
 
 #This will run the window in a loop
@@ -150,5 +156,9 @@ while True:
         MusicPlayer.setSong()
     elif event == "Stop Music":
         MusicPlayer.stopMusic()
+    elif event == "+":
+        MusicPlayer.volumeUP()
+    elif event == "-":
+        MusicPlayer.volumeDOWN()
     elif event == "Delete System32":
         fun()
