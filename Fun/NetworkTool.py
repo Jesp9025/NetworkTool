@@ -36,7 +36,7 @@ def runcmd(cmd, ipreq):
         if err:
             clearWindow()
             print("Unknown command")
-        
+            
 
 #Function to show ipconfig for Windows and Linux
 def ipconfigFunc():
