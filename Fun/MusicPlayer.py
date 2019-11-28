@@ -4,7 +4,25 @@ import pygame #Imports pygame to play sounds
 
 #Initialize the mixer and set volume
 pygame.mixer.init(44100)
-pygame.mixer.music.set_volume(0.2)
+volume = 0.1
+pygame.mixer.music.set_volume(volume)
+
+
+def volumeUP():
+    global volume
+    if volume >= 1.0:
+        volume = 1.0
+    else:
+        volume += 0.1
+        pygame.mixer.music.set_volume(volume)
+
+def volumeDOWN():
+    global volume
+    if volume <= 0.0:
+        volume = 0.0
+    else:
+        volume -= 0.1
+        pygame.mixer.music.set_volume(volume)
 
 def setSong(): #Loads a song and plays it
     pygame.mixer.music.load('sounds/sound.mp3')
