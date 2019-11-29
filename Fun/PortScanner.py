@@ -9,7 +9,7 @@ import socket
 # it. Once done, the thread releases the print_lock.
 # to use it, you want to specify a print_lock per thing you wish to print_lock.
 print_lock = threading.Lock()
-target = 'dintaksator.dk'
+target = 'whateverSite.com'
 #ip = socket.gethostbyname(target)
 
 def portscan(port):
