@@ -9,14 +9,8 @@ import socket
 # it. Once done, the thread releases the print_lock.
 # to use it, you want to specify a print_lock per thing you wish to print_lock.
 print_lock = threading.Lock()
-
-
-
 target = 'dintaksator.dk'
 #ip = socket.gethostbyname(target)
-
-
-
 
 def portscan(port):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -28,11 +22,10 @@ def portscan(port):
     except:
         pass
 
-
-# The threader thread pulls an worker from the queue and processes it
+# The threader thread pulls a worker from the queue and processes it
 def threader():
     while True:
-        # gets an worker from the queue
+        # gets a worker from the queue
         worker = q.get()
 
         # Run the example job with the avail worker in queue (thread)
@@ -40,10 +33,6 @@ def threader():
 
         # completed with the job
         q.task_done()
-
-
-
-        
 
 # Create the queue and threader 
 q = Queue()
@@ -57,7 +46,6 @@ for x in range(30):
 
      # begins, must come after daemon definition
      t.start()
-
 
 start = time.time()
 
