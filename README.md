@@ -6,5 +6,7 @@ Kaj hasn't finished the PDF task description
 
 # Dependencies
 python-whois
+
 pygame
+
 pysimplegui
