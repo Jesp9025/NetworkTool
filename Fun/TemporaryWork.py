@@ -94,11 +94,15 @@ def fun():
 #https://github.com/richardpenman/pywhois
 #https://www.pythonforbeginners.com/dns/using-pywhois
 def runWhois():
-    clearWindow()
-    print("Hold on..")
-    w = whois.whois(values["_whoisInput_"])
-    clearWindow()
-    print(w)
+    if values["_whoisInput_"] != "":
+        clearWindow()
+        print("Hold on..")
+        w = whois.whois(values["_whoisInput_"])
+        clearWindow()
+        print(w)
+    else:
+        clearWindow()
+        print("Please enter a target")
 #It may or may not say there is an error and whois is not callable.. Ignore it.
 
 ############# Port Scanner #############
@@ -199,11 +203,12 @@ tab2_layout = [[sg.Frame(layout=[
     [sg.Text("")],
     [sg.Button("Custom Command")]]
 
-tab3_layout = [[sg.T('Who is this?')],
-                [sg.InputText(key="_whoisInput_")],
+tab3_layout = [[sg.Text("Here you can run a whois on a URL")],
+            [sg.T('Target:'), sg.InputText(key="_whoisInput_")],
                 [sg.Button("Run Whois")]]
 
-tab4_layout = [[sg.Text("Target:"), sg.Input(key="_PORTINPUT_")],
+tab4_layout = [[sg.Text("Here you can scan a range of ports")],
+    [sg.Text("Target:"), sg.Input(key="_PORTINPUT_")],
     [sg.Button("Run PortScan")],
     [sg.Text("Select end port: NOT FUNCTIONAL YET! Change port range in code."), sg.Slider(range=(1, 65535), default_value=(1), size=(20,10), orientation='horizontal', key="_STARTPORT_")],
     [sg.Text("Select start port: NOT FUNCTIONAL YET! Change port range in code."), sg.Slider(range=(1, 65535), default_value=(443), size=(20,10), orientation='horizontal', key="_ENDPORT_")]]
