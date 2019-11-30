@@ -154,7 +154,7 @@ def startPortScan():
         # Number of ports to scan
         #Problem right now is that if you choose more ports than there are threads, it will hang.
         #But it will actually scan all the ports you tell it to, but you can't run the port scan again.
-        for worker in range(1,801):
+        for worker in range(1, 801):
             q.put(worker)
 
         _FINISH = True
@@ -205,8 +205,8 @@ tab3_layout = [[sg.T('Who is this?')],
 
 tab4_layout = [[sg.Text("Target:"), sg.Input(key="_PORTINPUT_")],
     [sg.Button("Run PortScan")],
-    [sg.Text("Select end port:"), sg.Slider(range=(1, 65535), default_value=(1), size=(20,10), orientation='horizontal', key="_STARTPORT_")],
-    [sg.Text("Select start port:"), sg.Slider(range=(1, 65535), default_value=(443), size=(20,10), orientation='horizontal', key="_ENDPORT_")]]
+    [sg.Text("Select end port: NOT FUNCTIONAL YET! Change port range in code."), sg.Slider(range=(1, 65535), default_value=(1), size=(20,10), orientation='horizontal', key="_STARTPORT_")],
+    [sg.Text("Select start port: NOT FUNCTIONAL YET! Change port range in code."), sg.Slider(range=(1, 65535), default_value=(443), size=(20,10), orientation='horizontal', key="_ENDPORT_")]]
 
 tab5_layout = [[sg.T('This is inside tab 5')]]
 
