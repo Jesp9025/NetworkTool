@@ -7,6 +7,10 @@ from queue import Queue # To make a queue system for threads for port scanner
 import socket # Library used to check if port is open
 import time # To start a timer for port scanner
 from decimal import Decimal #To round numbers
+import itertools #For loading animation
+
+#To start and stop loading animation. True = Not loading, False = Loading
+done = True
 
 
 #######################
@@ -19,6 +23,7 @@ def clearWindow():
 #Func to run commands and update text
 #Uses subprocess, which includes stdout, stderr. Using communicate() allows you to get output and error from the subprocess.Popen
 def runcmd(cmd, ipreq):
+    global done
     clearWindow()
     if ipreq == 1:
         temp = cmd + " " + values["_IP_"]
@@ -30,13 +35,15 @@ def runcmd(cmd, ipreq):
     if any((c in chars) for c in temp):
         print("Not gonna happen..")
     else:
-        print("Hold on..")
         #Runs the command, and outputs it in readable format
+        done = False
         result = subprocess.Popen(temp, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         out, err = result.communicate()
+        done = True
         if out:
             clearWindow()
             print(out.decode("utf-8"))
+            
         if err:
             clearWindow()
             print("Unknown command")
@@ -65,7 +72,7 @@ def traceFunc():
 def customcmd():
     #Checks if input is empty, to avoid error
     if values["_IP_"] != "":
-        runcmd(values["_IP_"], 0)
+        threading.Thread(target=runcmd, args=(values["_IP_"], 0), daemon=True).start()
     else:
         clearWindow()
         print("Please enter a command first")
@@ -94,10 +101,13 @@ def fun():
 #https://github.com/richardpenman/pywhois
 #https://www.pythonforbeginners.com/dns/using-pywhois
 def runWhois():
+    global done
+    
     if values["_whoisInput_"] != "":
         clearWindow()
-        print("Hold on..")
+        done = False
         w = whois.whois(values["_whoisInput_"])
+        done = True
         clearWindow()
         print(w)
     else:
@@ -173,6 +183,18 @@ def startPortScan():
     else:
             print("Please enter a target")
 
+#Loading animation
+#Very basic. We might find something better
+#https://stackoverflow.com/a/22029635
+def animate():
+    for c in itertools.cycle(['|', '/', '-', '\\']):
+        if done:
+            break
+        window["_INFO_"].update('\rloading ' + c)
+        time.sleep(0.1)
+        
+
+
 #######################
 #GUI Code
 #######################
@@ -244,16 +266,21 @@ while True:
         MusicPlayer.volumeDOWN()
     elif event == "IP Config": #This will do stuff if button named "IP Config" button is pressed
         ipconfigFunc()
+        threading.Timer(0.5, animate).start() #Using a timed thread in order to allow some time for other functions to set 'done' to False
     elif event == "Ping":
         pingFunc()
+        threading.Timer(0.5, animate).start()
     elif event == "Trace Route":
         traceFunc()
+        threading.Timer(0.5, animate).start()
     elif event == "Custom Command":
         customcmd()
+        threading.Timer(0.5, animate).start()
     elif event == "Flush DNS":
         flushDNS()
+        threading.Timer(0.5, animate).start()
     elif event =="Run Whois":
         threading.Thread(target=runWhois, daemon=True).start()
+        threading.Timer(0.5, animate).start()
     elif event =="Run PortScan":
         threading.Thread(target=startPortScan, daemon=True).start()
-        #startPortScan()
