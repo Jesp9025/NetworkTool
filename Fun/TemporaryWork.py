@@ -168,7 +168,6 @@ def startPortScan():
 
         # Number of ports to scan
         #Problem right now is that if you choose more ports than there are threads, it will hang.
-        #But it will actually scan all the ports you tell it to, but you can't run the port scan again.
         for worker in range(1, 801):
             q.put(worker)
 
