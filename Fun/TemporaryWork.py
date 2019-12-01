@@ -100,6 +100,7 @@ def fun():
 
 #https://github.com/richardpenman/pywhois
 #https://www.pythonforbeginners.com/dns/using-pywhois
+#Uses module 'python-whois'
 def runWhois():
     global done
     
@@ -235,19 +236,18 @@ tab4_layout = [[sg.Text("Here you can scan a range of ports")],
     [sg.Text("Select end port: NOT FUNCTIONAL YET! Change port range in code."), sg.Slider(range=(1, 65535), default_value=(1), size=(20,10), orientation='horizontal', key="_STARTPORT_")],
     [sg.Text("Select start port: NOT FUNCTIONAL YET! Change port range in code."), sg.Slider(range=(1, 65535), default_value=(443), size=(20,10), orientation='horizontal', key="_ENDPORT_")]]
 
-tab5_layout = [[sg.T('This is inside tab 5')]]
+tab5_layout = [[sg.T('This is inside tab 5 / Wi-Fi Explorer')]]
 
-tab6_layout = [[sg.T('This is inside tab 6')]]
+tab6_layout = [[sg.T('This is inside tab 6 / IP (VLSM) Calculator')]]
 
-tab7_layout = [[sg.T('This is inside tab 7')]]
+tab7_layout = [[sg.T('This is inside tab 7 / Cisco IOS')]]
 
-tab8_layout = [[sg.T('This is inside tab 8')],
-               [sg.In(key='_in_')]]
+tab8_layout = [[sg.T('This is inside tab 8')]]
 
 #This is where all layots/tabs are put together, to be used in window
 layout = [[sg.TabGroup([[sg.Tab('Music Player', tab1_layout), sg.Tab('Basics', tab2_layout),
-        sg.Tab('Whois', tab3_layout), sg.Tab('Port Scanner', tab4_layout), sg.Tab('Tab 5', tab5_layout),
-        sg.Tab('Tab 6', tab6_layout),sg.Tab('Tab 7', tab7_layout), sg.Tab('Tab 8', tab8_layout)]]), sg.Output(size=(46, 18), key="_INFO_")]]
+        sg.Tab('Whois', tab3_layout), sg.Tab('Port Scanner', tab4_layout), sg.Tab('Wi-Fi Explorer', tab5_layout),
+        sg.Tab('IP (VLSM) Calculator', tab6_layout),sg.Tab('Cisco IOS', tab7_layout), sg.Tab('Tab 8', tab8_layout)]]), sg.Output(size=(46, 18), key="_INFO_")]]
 #Creates the window
 window = sg.Window('Network Tool', layout, default_element_size=(12,1))    
 
