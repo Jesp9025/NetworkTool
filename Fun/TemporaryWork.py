@@ -61,7 +61,7 @@ def ipconfigFunc():
 def pingFunc():
     threading.Thread(target=runcmd, args=("ping", 1), daemon=True).start()
 
-#Function to start a trace route
+#Function to start a trace route. Takes input _IP_ to determine address
 def traceFunc():
     if values["_WINDOWS_"]:
         threading.Thread(target=runcmd, args=("tracert", 1), daemon=True).start()
@@ -85,7 +85,7 @@ def flushDNS():
         threading.Thread(target=runcmd, args=("service nscd restart", 0), daemon=True).start()
 
 #Function to shut down PC
-def shutFun():
+def shutdownPC():
     if values["_WINDOWS_"]:
         subprocess.Popen('shutdown -p -f')
     elif values["_LINUX_"]:
@@ -96,7 +96,7 @@ def shutFun():
 #This will create a new thread that runs a timer, and then runs the function, without freezing the program
 def fun():
     MusicPlayer.setSong3()
-    threading.Timer(17, shutFun, args=None, kwargs=None).start()
+    threading.Timer(17, shutdownPC).start()
 
 #https://github.com/richardpenman/pywhois
 #https://www.pythonforbeginners.com/dns/using-pywhois
