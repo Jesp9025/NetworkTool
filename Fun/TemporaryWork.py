@@ -231,7 +231,7 @@ tab3_layout = [[sg.Text("Here you can run a whois on a URL")],
 
 tab4_layout = [[sg.Text("Here you can scan a range of ports")],
     [sg.Text("Target:"), sg.Input(key="_PORTINPUT_")],
-    [sg.Button("Run PortScan")],
+    [sg.Button("Run PortScan"), sg.Text("Hackthissite.org is legal to scan")],
     [sg.Text("Select end port: NOT FUNCTIONAL YET! Change port range in code."),
         sg.Slider(range=(1, 65535), default_value=(1), size=(20,10), orientation='horizontal', key="_STARTPORT_")],
     [sg.Text("Select start port: NOT FUNCTIONAL YET! Change port range in code."),
