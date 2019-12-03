@@ -26,14 +26,22 @@ def volumeDOWN():
 
 def setSong(): #Loads a song and plays it
     pygame.mixer.music.load('sounds/sound.mp3')
-    pygame.mixer.music.play()
+    pygame.mixer.music.play(-1)
+
+def setSong1():
+    pygame.mixer.music.load('sounds/sound1.mp3')
+    pygame.mixer.music.play(-1)
 
 def setSong2():
     pygame.mixer.music.load('sounds/sound2.mp3')
-    pygame.mixer.music.play()
+    pygame.mixer.music.play(-1)
 
 def setSong3():
     pygame.mixer.music.load('sounds/sound3.mp3')
+    pygame.mixer.music.play(-1)
+
+def setCountdown():
+    pygame.mixer.music.load('sounds/countdown.mp3')
     pygame.mixer.music.play()
 
 def stopMusic(): #stops the music
