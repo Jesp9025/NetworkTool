@@ -132,11 +132,15 @@ def portscan(port):
         con.close()
     except:
         pass
+    
+#Used to stop threads    
 _FINISH = False
+
 # The threader thread pulls a worker from the queue and processes it
 def threader():
     global _FINISH
     while True:
+        #Runs until _FINISH is True
         if _FINISH:
             break
         # gets a worker from the queue
@@ -170,7 +174,8 @@ def startPortScan():
         #Problem right now is that if you choose more ports than there are threads, it will hang.
         for worker in range(1, 801):
             q.put(worker)
-
+        
+        #Stops the threads AFTER q.join() has been run!!
         _FINISH = True
         # wait until the thread terminates.
         q.join()
