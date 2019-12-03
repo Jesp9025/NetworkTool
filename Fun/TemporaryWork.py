@@ -137,7 +137,7 @@ _FINISH = False
 def threader():
     global _FINISH
     while True:
-        if _FINISH:
+        if _FINISH and q.empty():
             break
         # gets a worker from the queue
         worker = q.get()
@@ -168,7 +168,7 @@ def startPortScan():
 
         # Number of ports to scan
         #Problem right now is that if you choose more ports than there are threads, it will hang.
-        for worker in range(1, 801):
+        for worker in range(1, 2000):
             q.put(worker)
 
         _FINISH = True
