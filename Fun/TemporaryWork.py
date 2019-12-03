@@ -132,15 +132,11 @@ def portscan(port):
         con.close()
     except:
         pass
-    
-#Used to stop threads    
 _FINISH = False
-
 # The threader thread pulls a worker from the queue and processes it
 def threader():
     global _FINISH
     while True:
-        #Runs until _FINISH is True
         if _FINISH:
             break
         # gets a worker from the queue
@@ -174,8 +170,7 @@ def startPortScan():
         #Problem right now is that if you choose more ports than there are threads, it will hang.
         for worker in range(1, 801):
             q.put(worker)
-        
-        #Stops the threads AFTER q.join() has been run!!
+
         _FINISH = True
         # wait until the thread terminates.
         q.join()
@@ -213,7 +208,12 @@ tab1_layout =  [[sg.Text("")],
                 [sg.Button(button_text="Play Music"),
                     sg.Button(button_text="Stop Music")],
                 [sg.Button(button_text="+", size=(1,1)), 
-                    sg.Button(button_text="-", size=(1,1))]]
+                    sg.Button(button_text="-", size=(1,1))],
+                [sg.Text("Choose a song:"), sg.Combo(["Push It To The Limit",
+                "John Denver - Take Me Home, Country Roads",
+                "John Denver - Leaving On A Jetplane",
+                "Eye Of The Tiger"],
+                default_value="Push It To The Limit", key="_SONG_")]]
 
 tab2_layout = [[sg.Frame(layout=[
     [sg.Radio('Windows', "RADIO1", default=True, key="_WINDOWS_"), #key will make it possible to do events and use value of the button, depending on if its pressed or not(True, False)
@@ -264,7 +264,14 @@ while True:
     if event is None:           # always,  always give a way out!    
         break
     if event == "Play Music":
-        MusicPlayer.setSong()
+        if values["_SONG_"] == "Push It To The Limit":
+            MusicPlayer.setSong()
+        elif values["_SONG_"] == "John Denver - Take Me Home, Country Roads":
+            MusicPlayer.setSong1()
+        elif values["_SONG_"] == "John Denver - Leaving On A Jetplane":
+            MusicPlayer.setSong2()
+        elif values["_SONG_"] == "Eye Of The Tiger":
+            MusicPlayer.setSong3()
     elif event == "Stop Music":
         MusicPlayer.stopMusic()
     elif event == "+":
