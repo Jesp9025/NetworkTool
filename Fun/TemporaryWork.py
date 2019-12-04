@@ -168,8 +168,12 @@ def startPortScan():
 
         # Number of ports to scan
         #Problem right now is that if you choose more ports than there are threads, it will hang.
-        for worker in range(1, 2000):
-            q.put(worker)
+        if values["_SMALLSCAN_"]:
+            for worker in range(1, 2000):
+                q.put(worker)
+        elif values["_BIGSCAN_"]:
+            for worker in range(1, 65535):
+                q.put(worker)
 
         _FINISH = True
         # wait until the thread terminates.
@@ -177,7 +181,10 @@ def startPortScan():
 
         #End time
         end = time.time()
-        print("Scan completed. Time elapsed:", round(end - start, 2), "seconds")
+        if values["_SMALLSCAN_"]:
+            print("Scan completed. Time elapsed:", round(end - start, 2), "seconds\nPorts scanned: 2000")
+        elif values["_BIGSCAN_"]:
+            print("Scan completed. Time elapsed:", round(end - start, 2), "seconds\nPorts scanned: 65535")
         # Remember to set _FINISH to False
         _FINISH = False
     else:
@@ -237,10 +244,12 @@ tab3_layout = [[sg.Text("Here you can run a whois on a URL")],
 tab4_layout = [[sg.Text("Here you can scan a range of ports")],
     [sg.Text("Target:"), sg.Input(key="_PORTINPUT_")],
     [sg.Button("Run PortScan"), sg.Text("Hackthissite.org is legal to scan")],
-    [sg.Text("Select end port: NOT FUNCTIONAL YET! Change port range in code."),
-        sg.Slider(range=(1, 65535), default_value=(1), size=(20,10), orientation='horizontal', key="_STARTPORT_")],
-    [sg.Text("Select start port: NOT FUNCTIONAL YET! Change port range in code."),
-        sg.Slider(range=(1, 65535), default_value=(443), size=(20,10), orientation='horizontal', key="_ENDPORT_")]]
+    [sg.Frame(layout=[
+    [sg.Radio('Small scan', "RADIO2", default=True, key="_SMALLSCAN_"), #key will make it possible to do events and use value of the button, depending on if its pressed or not(True, False)
+        sg.Radio('Big scan', "RADIO2", key="_BIGSCAN_")]],
+            title='Scan Size',
+            title_color='black',
+            relief=sg.RELIEF_SUNKEN)]]
 
 tab5_layout = [[sg.T('This is inside tab 5 / Wi-Fi Explorer')]]
 
