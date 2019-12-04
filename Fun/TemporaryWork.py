@@ -249,7 +249,8 @@ tab4_layout = [[sg.Text("Here you can scan a range of ports")],
         sg.Radio('Big scan', "RADIO2", key="_BIGSCAN_")]],
             title='Scan Size',
             title_color='black',
-            relief=sg.RELIEF_SUNKEN)]]
+            relief=sg.RELIEF_SUNKEN)],
+    [sg.Text("Small scan scans 1-2000, takes a few seconds\nBig scan scans 1-65535, takes 40-70 seconds")]]
 
 tab5_layout = [[sg.T('This is inside tab 5 / Wi-Fi Explorer')]]
 
