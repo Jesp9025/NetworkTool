@@ -7,6 +7,8 @@ It can do basic stuff, ping, custom command etc. It can also do whois, portscan 
 
 Sounds will not work properly if you run directly with "Python"
 
+Made by Jesper, Julius, Mantas & Erki
+
 # Dependencies
 python-whois
 
