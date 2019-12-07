@@ -1,8 +1,9 @@
 # GUI-Project
-The task is to take a CLI Software, and turn it into GUI Software
+The task is to make a GUI-based program.
 
-Or maybe create a new piece of software with GUI. We don't know yet.
-Kaj hasn't finished the PDF task description
+We are making a Network Helping Tool.
+
+It can do basic stuff, ping, custom command etc. It can also do whois, portscan and more.
 
 # Dependencies
 python-whois
