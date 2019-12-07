@@ -13,3 +13,6 @@ python-whois
 pygame (Not sure if built-in or not)
 
 pysimplegui
+
+# Bugs
+TBA
