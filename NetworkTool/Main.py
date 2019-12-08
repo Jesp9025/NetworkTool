@@ -138,7 +138,7 @@ def runWhois():
         # Stops loading animation
         done = True
         clearWindow()
-        print(w)
+        print(w.text)
         enableButtons()
     else:
         clearWindow()
