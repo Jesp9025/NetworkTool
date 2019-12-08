@@ -18,4 +18,4 @@ pygame (Not sure if built-in or not)
 pysimplegui
 
 # Bugs
-TBA
+- Decoding of text not working on machines with specific languages
