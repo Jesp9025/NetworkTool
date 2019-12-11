@@ -12,11 +12,10 @@ tab1_layout =  [[sg.Text("")],
                     sg.Button(button_text="-", size=(1,1))],
                 [sg.Text("Choose a song:"),
                 sg.Combo([
-                    "Push It To The Limit",
-                    "John Denver - Take Me Home, Country Roads",
-                    "John Denver - Leaving On A Jetplane",
-                    "Eye Of The Tiger"],
-                    default_value="Eye Of The Tiger", key="_SONG_")]]
+                    "FitGirl",
+                    "Eye Of The Tiger",
+                    "Push It To The Limit"],
+                    default_value="FitGirl", key="_SONG_")]]
 
 #Basic tools tab
 tab2_layout = [[sg.Frame(layout=[
@@ -60,12 +59,15 @@ tab6_layout = [[sg.T('This is inside tab 6 / IP (VLSM) Calculator')]]
 #Cisco IOS tab
 tab7_layout = [[sg.T('This is inside tab 7 / Cisco IOS')]]
 
-tab8_layout = [[sg.T('This is inside tab 8')]]
+tab8_layout = [[sg.Text('CPU Usage Monitor')],
+                [sg.Text("Press Begin to open the monitor")],
+                [sg.Button("Begin")]]
+
 
 #This is where all layots/tabs are put together, to be used in window
 layout = [[sg.TabGroup([[sg.Tab('Music Player', tab1_layout), sg.Tab('Basics', tab2_layout),
             sg.Tab('Whois', tab3_layout), sg.Tab('Port Scanner', tab4_layout), sg.Tab('Wi-Fi Analyzer', tab5_layout),
-            sg.Tab('IP (VLSM) Calculator', tab6_layout),sg.Tab('Cisco IOS', tab7_layout), sg.Tab('Tab 8', tab8_layout)]]),
+            sg.Tab('IP (VLSM) Calculator', tab6_layout),sg.Tab('Cisco IOS', tab7_layout), sg.Tab('CPU Usage', tab8_layout)]]),
             sg.Output(size=(46, 18), key="_INFO_")]]
 
 #Creates the window
