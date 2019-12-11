@@ -17,5 +17,7 @@ pygame (Not sure if built-in or not)
 
 pysimplegui
 
+psutil
+
 # Bugs
 - Decoding of text not working on machines with specific languages
