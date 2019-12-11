@@ -2,6 +2,7 @@ import os, sys
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide" #This hides the pygame message. Annoying..
 import pygame #Imports pygame to play sounds
 
+#Gets path to folder where .py file is located
 APP_FOLDER = os.path.dirname(os.path.realpath(sys.argv[0]))
 
 #Initialize the mixer and set volume
@@ -27,6 +28,7 @@ def volumeDOWN():
         pygame.mixer.music.set_volume(volume)
 
 def setSong1(): #Loads a song and plays it
+    # gets the full path to the sound file
     full_path = os.path.join(APP_FOLDER, "sounds/sound1.mp3")
     pygame.mixer.music.load(full_path)
     pygame.mixer.music.play(-1) #(-1) means that song is repeated
