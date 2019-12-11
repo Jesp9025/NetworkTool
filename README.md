@@ -5,7 +5,7 @@ We are making a Network Helping Tool.
 
 It can do basic stuff, ping, custom command etc. It can also do whois, portscan and more.
 
-Sounds will not work properly if you run directly with "Python". Sometimes it works, sometimes it doesn't
+Sounds will not work properly if you run directly with "Python". Sometimes it works, sometimes it doesn't. run in debug for now.
 #    
 Made by Jesper, Julius, Mantas & Erki
 #
@@ -21,3 +21,4 @@ psutil
 
 # Bugs
 - Decoding of text not working on machines with specific languages
+- Crashes on music play if you directly with "Python". Sometimes it works, sometimes it doesn't. run in debug for now.
