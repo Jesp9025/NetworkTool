@@ -28,22 +28,22 @@ def volumeDOWN():
 
 def setSong1(): #Loads a song and plays it
     full_path = os.path.join(APP_FOLDER, "sound1.mp3")
-    mixer.music.load(full_path)
+    pygame.mixer.music.load(full_path)
     pygame.mixer.music.play(-1) #(-1) means that song is repeated
 
 def setSong2():
     full_path = os.path.join(APP_FOLDER, "sound2.mp3")
-    mixer.music.load(full_path)
+    pygame.mixer.music.load(full_path)
     pygame.mixer.music.play(-1)
 
 def setSong3():
     full_path = os.path.join(APP_FOLDER, "sound3.mp3")
-    mixer.music.load(full_path)
+    pygame.mixer.music.load(full_path)
     pygame.mixer.music.play(-1)
 
 def setCountdown():
     full_path = os.path.join(APP_FOLDER, "countdown.mp3")
-    mixer.music.load(full_path)
+    pygame.mixer.music.load(full_path)
     pygame.mixer.music.play()
 
 def stopMusic(): #stops the music
