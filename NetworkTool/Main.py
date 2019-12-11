@@ -8,6 +8,7 @@ import time # To start a timer for port scanner
 from decimal import Decimal #To round numbers
 import itertools #For loading animation
 import GUI # Our GUI python file, uses PySimpleGUI
+#import CPU_Monitor
 
 
 #####################################################################
@@ -271,12 +272,12 @@ while True:
     if event is None:           # always,  always give a way out!    
         break
     if event == "Play Music":
-        if values["_SONG_"] == "Push It To The Limit":
-            MusicPlayer.setSong()
-        elif values["_SONG_"] == "John Denver - Take Me Home, Country Roads":
+        if values["_SONG_"] == "FitGirl":
             MusicPlayer.setSong1()
-        elif values["_SONG_"] == "John Denver - Leaving On A Jetplane":
+        elif values["_SONG_"] == "Eye Of The Tiger":
             MusicPlayer.setSong2()
+        elif values["_SONG_"] == "Push It To The Limit":
+            MusicPlayer.setSong3()
         elif values["_SONG_"] == "Eye Of The Tiger":
             MusicPlayer.setSong3()
     elif event == "Stop Music":
