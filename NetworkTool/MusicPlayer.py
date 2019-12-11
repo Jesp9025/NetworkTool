@@ -24,13 +24,9 @@ def volumeDOWN():
         volume -= 0.1
         pygame.mixer.music.set_volume(volume)
 
-def setSong(): #Loads a song and plays it
-    pygame.mixer.music.load('sounds/sound.mp3')
-    #(-1) means that song is repeated
-    pygame.mixer.music.play(-1)
-
-def setSong1():
+def setSong1(): #Loads a song and plays it
     pygame.mixer.music.load('sounds/sound1.mp3')
+    #(-1) means that song is repeated
     pygame.mixer.music.play(-1)
 
 def setSong2():
