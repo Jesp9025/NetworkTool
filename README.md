@@ -12,7 +12,7 @@ Made by Jesper, Julius, Mantas & Erki
 # Dependencies
 python-whois
 
-pygame (Not sure if built-in or not)
+pygame
 
 pysimplegui
 
