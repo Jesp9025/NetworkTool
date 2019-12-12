@@ -20,9 +20,16 @@ def clearWindow():
     GUI.window["_INFO_"].update("")
     
 ####### Pytest #######
-def test_clearWindow():
-    clearWindow()
-    assert GUI.window["_INFO_"] == ""
+#def test_clearWindow():
+#    clearWindow()
+#    assert GUI.window["_INFO_"] == ""
+    
+def func(x):
+    return x + 1
+
+
+def test_answer():
+    assert func(3) == 5
 ####### Pytest #######
     
 
