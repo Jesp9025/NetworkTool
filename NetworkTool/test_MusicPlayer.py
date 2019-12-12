@@ -33,6 +33,12 @@ def volumeDOWN():
         volume -= 0.1
         pygame.mixer.music.set_volume(volume)
 
+#Volume is 0.2 ( Because volumeUP was tested just before )
+#Expected 0.1 after volumeDOWN function has been run
+def test_volumeDOWN():
+    volumeDOWN()
+    assert volume == 0.1
+
 def setSong1(): #Loads a song and plays it
     # gets the full path to the sound file
     full_path = os.path.join(APP_FOLDER, "sounds/sound1.mp3")
