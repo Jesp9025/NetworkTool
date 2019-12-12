@@ -1,0 +1,3 @@
+#base config
+language: python
+script: pytest
