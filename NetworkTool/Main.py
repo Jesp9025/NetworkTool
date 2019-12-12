@@ -8,6 +8,7 @@ import time # To start a timer for port scanner
 from decimal import Decimal #To round numbers
 import itertools #For loading animation
 import GUI # Our GUI python file, uses PySimpleGUI
+import pytest
 #import CPU_Monitor
 
 
@@ -18,6 +19,13 @@ import GUI # Our GUI python file, uses PySimpleGUI
 def clearWindow():
     GUI.window["_INFO_"].update("")
     
+####### Pytest #######
+def test_clearWindow():
+    clearWindow()
+    assert GUI.window["_INFO_"] == ""
+####### Pytest #######
+    
+
 def disableButtons():
     GUI.window["Ping"].update(disabled=True)
     GUI.window["Trace Route"].update(disabled=True)
