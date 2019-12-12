@@ -54,7 +54,10 @@ tab4_layout = [[sg.Text("Here you can scan a range of ports")],
 tab5_layout = [[sg.T('This is inside tab 5 / Wi-Fi Analyzer')]]
 
 #IP Calculator tab
-tab6_layout = [[sg.T('This is inside tab 6 / IP (VLSM) Calculator')]]
+tab6_layout = [[sg.T('Subnet Calculator')],
+                [sg.Text("IPv4 Address: "), sg.Input(key="_IPCALC_")],
+                [sg.Text("CIDR Notation:"), sg.Input(key="_CIDR_")],
+                [sg.Button(button_text="Calculate")]]
 
 #Cisco IOS tab
 tab7_layout = [[sg.T('This is inside tab 7 / Cisco IOS')]]
