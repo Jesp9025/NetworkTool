@@ -8,8 +8,10 @@ import time # To start a timer for port scanner
 from decimal import Decimal #To round numbers
 import itertools #For loading animation
 import GUI # Our GUI python file, uses PySimpleGUI
+import CPU_Monitor
+import IPCalc
 import pytest
-#import CPU_Monitor
+
 
 
 #####################################################################
@@ -18,8 +20,8 @@ import pytest
 #Clears the window
 def clearWindow():
     GUI.window["_INFO_"].update("")
-    
-    
+
+
 def disableButtons():
     GUI.window["Ping"].update(disabled=True)
     GUI.window["Trace Route"].update(disabled=True)
@@ -270,7 +272,7 @@ def animate():
 
 #Runs the window in a loop
 while True:
-    event, values = GUI.window.read()   
+    event, values = GUI.window.read()
     if event is None:           # always,  always give a way out!    
         break
     if event == "Play Music":
@@ -303,8 +305,19 @@ while True:
     elif event == "Flush DNS":
         flushDNS()
         threading.Timer(0.5, animate).start()
-    elif event =="Run Whois":
+    elif event == "Run Whois":
         threading.Thread(target=runWhois, daemon=True).start()
         threading.Timer(0.5, animate).start()
-    elif event =="Run PortScan":
+    elif event == "Run PortScan":
         threading.Thread(target=startPortScan, daemon=True).start()
+    elif event == "Begin":
+        #threading.Thread(target=CPU_Monitor.main, daemon=True).start()
+        CPU_Monitor.main()
+    elif event == "Calculate":
+        clearWindow()
+        IPCalc.ipAdd = values["_IPCALC_"]
+        try:
+            IPCalc.cidr = int(values["_CIDR_"])
+            IPCalc.ipCalc()
+        except ValueError:
+            print("**Enter a valid CIDR notation number (Integer 1 - 31)**\n")
