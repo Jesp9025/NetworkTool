@@ -8,7 +8,7 @@ import time # To start a timer for port scanner
 from decimal import Decimal #To round numbers
 import itertools #For loading animation
 import GUI # Our GUI python file, uses PySimpleGUI
-import CPU_Monitor
+import TEMP_CPU_MONITOR
 import IPCalc
 import pytest
 
