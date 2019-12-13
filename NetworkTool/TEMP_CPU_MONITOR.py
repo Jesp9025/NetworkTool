@@ -63,15 +63,13 @@ def main(): # main loop
 
     num_cores = len (psutil.cpu_percent(percpu=True))  # len function return the number of cores in the CPU
 
-    layout = [[sg.Text('CPU for each core:')],  # layout of the Window
-    [sg.Text('Click on Total, for CPU Total Usage Popup')],
-    [sg.Button('Total')]]
+    layout = [[sg.Text('Usage for each thread:')]]
 
     # add information (data) on the graphs
     for rows in range(num_cores // NUM_COLS + 1):
         row = []
         for cols in range(min(num_cores - rows * NUM_COLS, NUM_COLS)):
-            row.append(graphColumn('CPU '+ str (rows * NUM_COLS + cols), '_CPU_' + str (rows * NUM_COLS + cols))) # shows the processor core number
+            row.append(graphColumn('Thread '+ str (rows * NUM_COLS + cols), '_CPU_' + str (rows * NUM_COLS + cols))) # shows the processor core number
         layout.append(row)
 
     window = sg.Window('CPU Usage Monitor', layout, # GUI Window
@@ -90,7 +88,7 @@ def main(): # main loop
 
     while True :
         event, values = window.read(timeout = POLL_FREQUENCY) # Read and update window once every Polling Frequency (every 500ms)
-        if event in (None, 'Total'):         
+        if event is None:        
             break
         
         stats = psutil.cpu_percent(percpu = True) # read CPU for each core
@@ -98,5 +96,5 @@ def main(): # main loop
         
         for i in range(num_cores): # update each graph
             graphs[i].graphPercentage(stats[i])
-            graphs[i].text_display('{} CPU {:2.0f}'.format(i, stats[i]))
+            graphs[i].text_display('{} Thread {:2.0f}'.format(i, stats[i]))
             #print("Current CPU usage is "+str(cpu)+"%") #→ for testing
