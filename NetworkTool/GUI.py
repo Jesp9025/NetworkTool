@@ -1,6 +1,10 @@
 import PySimpleGUI as sg
+import os, sys
 #Sets the theme
 sg.change_look_and_feel('Reddit')
+
+# Gets path to folder where .py file is located
+APP_FOLDER = os.path.dirname(os.path.realpath(sys.argv[0]))
 
 #Creates the layouts for each tab
 #MusicPlayer tab. Uses PyGame to play sounds, control volume etc.
@@ -71,5 +75,7 @@ layout = [[sg.TabGroup([[sg.Tab('Music Player', tab1_layout), sg.Tab('Basics', t
             sg.Tab('CPU Monitor', tab7_layout), sg.Tab('Credits', tab8_layout)]]),
             sg.Output(size=(46, 18), key="_INFO_")]]
 
+# Sets path of our icon
+IcoFull_path = os.path.join(APP_FOLDER, "favicon.ico")
 #Creates the window
-window = sg.Window('Network Tool', layout, default_element_size=(12,1), icon="favicon.ico")
+window = sg.Window('Network Tool', layout, default_element_size=(12,1), icon=IcoFull_path)
