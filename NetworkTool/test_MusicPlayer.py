@@ -5,6 +5,7 @@ import pygame #Imports pygame to play sounds
 #Gets path to folder where .py file is located
 APP_FOLDER = os.path.dirname(os.path.realpath(sys.argv[0]))
 
+
 #Initialize the mixer and set volume
 pygame.mixer.init(44100)
 volume = 0.1
@@ -19,6 +20,7 @@ def volumeUP():
         volume += 0.1
         pygame.mixer.music.set_volume(volume)
 
+# 13-12-2019: This will NOT work with Travis-CI
 #Volume is 0.1
 #Expected 0.2 after volumeUP function has been run
 def test_volumeUP():
