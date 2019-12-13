@@ -6,11 +6,11 @@ from queue import Queue # To make a queue system for threads for port scanner
 import socket # Library used to check if port is open
 import time # To start a timer for port scanner
 from decimal import Decimal #To round numbers
-import itertools #For loading animation
+import itertools # For loading animation
 import GUI # Our GUI python file, uses PySimpleGUI
-import CPU_Monitor
-import IPCalc
-import pytest
+import CPU_Monitor # To run CPU Monitor
+import IPCalc # To run Subnet Calculator
+import pytest # To test
 
 
 
