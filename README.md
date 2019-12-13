@@ -7,6 +7,7 @@ We are making a Network Helping Tool.
 Made by Jesper, Julius, Mantas & Erki
 #
 # Features
+- IP Config
 - Ping
 - Traceroute
 - Flush DNS
