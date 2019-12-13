@@ -8,7 +8,7 @@ import time # To start a timer for port scanner
 from decimal import Decimal #To round numbers
 import itertools #For loading animation
 import GUI # Our GUI python file, uses PySimpleGUI
-import TEMP_CPU_MONITOR
+import CPU_Monitor
 import IPCalc
 import pytest
 
@@ -70,7 +70,7 @@ def runcmd(cmd, ipreq): # cmd argument is used to determine which command to run
         enableButtons()
         if out:
             clearWindow()
-            print(out.decode("utf-8"))
+            print(out.decode("ascii"))
 
         if err:
             clearWindow()
@@ -312,7 +312,7 @@ while True:
         threading.Thread(target=startPortScan, daemon=True).start()
     elif event == "Begin":
         #threading.Thread(target=CPU_Monitor.main, daemon=True).start()
-        TEMP_CPU_MONITOR.main()
+        CPU_Monitor.main()
     elif event == "Calculate":
         clearWindow()
         IPCalc.ipAdd = values["_IPCALC_"]
