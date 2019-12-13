@@ -70,7 +70,7 @@ def runcmd(cmd, ipreq): # cmd argument is used to determine which command to run
         enableButtons()
         if out:
             clearWindow()
-            print(out.decode("ascii"))
+            print(out.decode("utf-8"))
 
         if err:
             clearWindow()
