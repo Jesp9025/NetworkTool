@@ -312,7 +312,7 @@ while True:
         threading.Thread(target=startPortScan, daemon=True).start()
     elif event == "Begin":
         #threading.Thread(target=CPU_Monitor.main, daemon=True).start()
-        TEMP_CPU_Monitor.main()
+        TEMP_CPU_MONITOR.main()
     elif event == "Calculate":
         clearWindow()
         IPCalc.ipAdd = values["_IPCALC_"]
