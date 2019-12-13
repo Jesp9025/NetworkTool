@@ -72,4 +72,4 @@ layout = [[sg.TabGroup([[sg.Tab('Music Player', tab1_layout), sg.Tab('Basics', t
             sg.Output(size=(46, 18), key="_INFO_")]]
 
 #Creates the window
-window = sg.Window('Network Tool', layout, default_element_size=(12,1))
+window = sg.Window('Network Tool', layout, default_element_size=(12,1), icon="favicon.ico")
