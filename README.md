@@ -3,11 +3,19 @@ The task is to make a GUI-based program.
 #
 We are making a Network Helping Tool.
 
-It can do basic stuff, ping, custom command etc. It can also do whois, portscan and more.
-
 #    
 Made by Jesper, Julius, Mantas & Erki
 #
+# Features
+- Ping
+- Traceroute
+- Flush DNS
+- Custom Command
+- Whois Lookup
+- Port Scanner
+- Music Player
+- Subnet Calculator
+- CPU Usage Monitor
 
 # Dependencies
 python-whois
