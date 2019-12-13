@@ -63,22 +63,18 @@ def main(): # main loop
 
     num_cores = len (psutil.cpu_percent(percpu=True))  # len function return the number of cores in the CPU
 
-    layout = [[sg.Text('CPU for each core:')],  # layout of the Window
-    [sg.Text('Click on Total, for CPU Total Usage Popup')],
-    [sg.Button('Total')]]
+    layout = [[sg.Text('Usage for each thread:')]]
 
     # add information (data) on the graphs
     for rows in range(num_cores // NUM_COLS + 1):
         row = []
         for cols in range(min(num_cores - rows * NUM_COLS, NUM_COLS)):
-            row.append(graphColumn('CPU '+ str (rows * NUM_COLS + cols), '_CPU_' + str (rows * NUM_COLS + cols))) # shows the processor core number
+            row.append(graphColumn('Thread '+ str (rows * NUM_COLS + cols), '_CPU_' + str (rows * NUM_COLS + cols))) # shows the processor core number
         layout.append(row)
 
     window = sg.Window('CPU Usage Monitor', layout, # GUI Window
                        auto_size_buttons=True, # buttons in this Window should be sized to exactly fit the text on this
-                       grab_anywhere=True, # you can manipulate with window on the screen
                        default_button_element_size=(12, 1), # tuple[int, int] (width, height) size in characters (wide) and rows (high) for all Button elements in this window
-                       return_keyboard_events=True, # key presses on the keyboard will be returned as Events from Read calls
                        use_default_focus=False, # if its true, will use the default focus algorithm to set the focus to the "Correct" element
                        finalize=True) # If True then the Finalize method will be called. Use this rather than chaining .Finalize for cleaner code
    
@@ -92,7 +88,7 @@ def main(): # main loop
 
     while True :
         event, values = window.read(timeout = POLL_FREQUENCY) # Read and update window once every Polling Frequency (every 500ms)
-        if event in (None, 'Total'):         
+        if event is None:        
             break
         
         stats = psutil.cpu_percent(percpu = True) # read CPU for each core
@@ -100,29 +96,5 @@ def main(): # main loop
         
         for i in range(num_cores): # update each graph
             graphs[i].graphPercentage(stats[i])
-            graphs[i].text_display('{} CPU {:2.0f}'.format(i, stats[i]))
-            #print("Current CPU usage is "+str(cpu)+"%") #→ for testing
-    window.close()
-
-if __name__ == "__main__":
-
-    main()
-
-# ------------------ Popup Total CPU Usage---------------------
-
-layout = [[sg.Text('CPU Usage in Total')],
-           [sg.Text('', size=(8,2), justification='center', key='_text_')],
-           [sg.Exit()]]
-
-window = sg.Window('CPU Total').Layout(layout)
-
-while True:
-    button, values = window._ReadNonBlocking()
-
-    if button == 'Exit' or values is None:
-        break
-
-    cpu_percent = psutil.cpu_percent (interval=1)
-
-    window.FindElement('_text_').Update(f'CPU {cpu_percent:02.0f}%') # it shows the total CPU usage in %
-    
+            graphs[i].text_display('{} Thread {:2.0f}'.format(i, stats[i]))
+            print("Current CPU usage is "+str(psutil.cpu_percent())+"%")
