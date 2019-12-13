@@ -111,13 +111,6 @@ def flushDNS():
     elif values["_LINUX_"]:
         threading.Thread(target=runcmd, args=("service nscd restart", 0), daemon=True).start()
 
-#Function to shut down PC
-def shutdownPC():
-    if values["_WINDOWS_"]:
-        subprocess.Popen('shutdown -p -f')
-    elif values["_LINUX_"]:
-        subprocess.Popen('shutdown -h now')
-
 #Help with a timer that doesn't freeze the program
 #https://stackoverflow.com/a/44666336
 #This will create a new thread that runs a timer, and then runs the function, without freezing the program
