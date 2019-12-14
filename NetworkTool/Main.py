@@ -1,3 +1,19 @@
+# This program was created as a school project.
+# Made by:
+# Jesper Pedersen
+# Erki Hanson
+# Mantas Vilimavicius
+# Julius Pazitka.
+
+# Dependencies:
+# Python-Whois
+# Pygame
+# PySimpleGUI
+# Psutil
+# Pytest
+
+# Feel free to use this program and code in any way you like.
+
 import subprocess # To run shell commands
 import MusicPlayer # To play music
 import threading # To run threads
