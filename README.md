@@ -27,6 +27,8 @@ pysimplegui
 
 psutil
 
+pytest
+
 # Bugs
 - Decoding of text not working on machines with specific languages
 - Whois output is not as pretty as wanted
