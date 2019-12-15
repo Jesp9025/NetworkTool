@@ -6,10 +6,10 @@ We are making a Network Helping Tool.
 #    
 Made by Jesper, Julius, Mantas & Erki
 #
+
 <div style="text-align:center"><img src="https://github.com/Jesp9025/GUI-Project/blob/master/pysimplegui.png" /></div>
 
-![alt text](https://github.com/Jesp9025/GUI-Project/blob/master/Gui.png)
-</p>
+<div style="text-align:center"><img src=https://github.com/Jesp9025/GUI-Project/blob/master/Gui.png" /></div>
 
 # Features
 - IP Config
