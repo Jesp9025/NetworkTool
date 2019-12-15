@@ -6,9 +6,7 @@ We are making a Network Helping Tool.
 #    
 Made by Jesper, Julius, Mantas & Erki
 #
-<p align="center">
- 
-![alt text](https://github.com/Jesp9025/GUI-Project/blob/master/pysimplegui.png style=centerme)
+<div style="text-align:center"><img src="https://github.com/Jesp9025/GUI-Project/blob/master/pysimplegui.png" /></div>
 
 ![alt text](https://github.com/Jesp9025/GUI-Project/blob/master/Gui.png)
 </p>
