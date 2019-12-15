@@ -7,10 +7,11 @@ We are making a Network Helping Tool.
 Made by Jesper, Julius, Mantas & Erki
 #
 <p align="center">
-  <img="https://github.com/Jesp9025/GUI-Project/blob/master/pysimplegui.png>
+![alt text](https://github.com/Jesp9025/GUI-Project/blob/master/pysimplegui.png)
 
 ![alt text](https://github.com/Jesp9025/GUI-Project/blob/master/Gui.png)
 </p>
+
 # Features
 - IP Config
 - Ping
