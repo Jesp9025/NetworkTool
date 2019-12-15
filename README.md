@@ -8,7 +8,7 @@ Made by Jesper, Julius, Mantas & Erki
 #
 <p align="center">
  
-![alt text](https://github.com/Jesp9025/GUI-Project/blob/master/pysimplegui.png)
+![alt text](https://github.com/Jesp9025/GUI-Project/blob/master/pysimplegui.png style=centerme)
 
 ![alt text](https://github.com/Jesp9025/GUI-Project/blob/master/Gui.png)
 </p>
