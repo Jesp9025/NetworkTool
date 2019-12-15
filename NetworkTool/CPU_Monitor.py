@@ -92,9 +92,9 @@ def main(): # main loop
             break
         
         stats = psutil.cpu_percent(percpu = True) # read CPU for each core
-        psutil.cpu_percent()
+        #psutil.cpu_percent() → for testing
+        print("Current CPU usage is " + str (psutil.cpu_percent()) + "%")
         
         for i in range(num_cores): # update each graph
             graphs[i].graphPercentage(stats[i])
             graphs[i].text_display('{} Thread {:2.0f}'.format(i, stats[i]))
-            print("Current CPU usage is "+str(psutil.cpu_percent())+"%")
