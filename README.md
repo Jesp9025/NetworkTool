@@ -6,6 +6,9 @@ We are making a Network Helping Tool.
 #    
 Made by Jesper, Julius, Mantas & Erki
 #
+
+![alt text](https://github.com/Jesp9025/GUI-Project/blob/master/Gui.png)
+
 # Features
 - IP Config
 - Ping
