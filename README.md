@@ -2,6 +2,8 @@
 The task is to make a GUI-based program.
 #
 We are making a Network Helping Tool.
+# How To Run
+Run Main.py
 
 #    
 Made by Jesper, Julius, Mantas & Erki
