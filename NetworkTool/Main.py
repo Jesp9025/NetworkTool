@@ -320,6 +320,7 @@ while True:
     elif event == "Run PortScan":
         threading.Thread(target=startPortScan, daemon=True).start()
     elif event == "Begin":
+        clearWindow()
         #threading.Thread(target=CPU_Monitor.main, daemon=True).start()
         CPU_Monitor.main()
     elif event == "Calculate":
