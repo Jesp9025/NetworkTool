@@ -130,9 +130,6 @@ def flushDNS():
 #Help with a timer that doesn't freeze the program
 #https://stackoverflow.com/a/44666336
 #This will create a new thread that runs a timer, and then runs the function, without freezing the program
-def fun():
-    MusicPlayer.setCountdown()
-    threading.Timer(17, shutdownPC).start()
 
 ############# Whois ##############
 #https://github.com/richardpenman/pywhois
@@ -320,8 +317,8 @@ while True:
     elif event == "Run PortScan":
         threading.Thread(target=startPortScan, daemon=True).start()
     elif event == "Begin":
-        clearWindow()
         #threading.Thread(target=CPU_Monitor.main, daemon=True).start()
+        clearWindow()
         CPU_Monitor.main()
     elif event == "Calculate":
         clearWindow()
