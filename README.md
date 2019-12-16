@@ -2,12 +2,12 @@
 The task is to make a GUI-based program.
 #
 We are making a Network Helping Tool.
-# How To Run
-Run Main.py
 
 #    
 Made by Jesper, Julius, Mantas & Erki
-#
+
+# How To Run
+Run Main.py
 
 <div style="text-align:center"><img src="https://github.com/Jesp9025/GUI-Project/blob/master/pysimplegui.png" /></div>
 
