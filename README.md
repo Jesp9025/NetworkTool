@@ -1,6 +1,5 @@
 # GUI-Project
-The task is to make a GUI-based program.
-#
+
 We are making a Network Helping Tool.
 
 #    
